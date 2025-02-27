@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="269abc0e-cd83-4572-be26-3d484625fec3" name="Changes" comment="2024-8-23-api网关改造前">
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/API-client-sdk-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/META-INF/spring.factories" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/com/timess/apiclientsdk/APIClientConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/com/timess/apiclientsdk/client/APIClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/com/timess/apiclientsdk/model/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/classes/com/timess/apiclientsdk/utils/SignUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../API-client-sdk/target/test-classes/com/timess/apiclientsdk/ApiClientSdkApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API-client-sdk/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../API-client-sdk/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API-client-sdk/src/main/java/com/timess/apiclientsdk/client/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../API-client-sdk/src/main/java/com/timess/apiclientsdk/client/APIClient.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../API-client-sdk" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\timess\apache-maven-3.9.8" />
+        <option name="localRepository" value="D:\timessRepository\maven_repository" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\timess\apache-maven-3.9.8\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2khYOfmGEHJPtlWwcgnkx70URiC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JUnit.UserInterfaceInfoServiceImplTest.invokeCount.executor": "Run",
+    "Maven.API-client-sdk [install].executor": "Run",
+    "Maven.api-common [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.APIInterfaceSimulationApplication.executor": "Debug",
+    "Spring Boot.ApiGatewayApplication.executor": "Debug",
+    "Spring Boot.GatewayLearningApplication.executor": "Run",
+    "Spring Boot.MyApplication.executor": "Debug",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/api-project/api-common",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.timess.project.service.impl.inner" />
+      <recent name="com.timess.project.service" />
+      <recent name="com.timess.project.service.impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\api-project\api-common\src\main\java\com\timess\apicommon\service" />
+      <recent name="D:\api-project\api-common\src\main\java\com\timess\apicommon" />
+      <recent name="D:\java全栈项目\api调用平台\合订版\api-backend - 副本\src\main\java\com\yupi\project" />
+      <recent name="C:\Users\xing10\Desktop\java全栈项目\api调用平台\api-gateway\src\main" />
+      <recent name="C:\Users\xing10\Desktop\java全栈项目\api调用平台\api-backend\src\main\java\com\yupi\project\model\dto\userinterfaceinfo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\java全栈项目\api调用平台\api-backend - 副本\APIinterface_simulation\src\main\java\org\timessapi\apiinterface_simulation" />
+      <recent name="C:\Users\xing10\Desktop\java全栈项目\api调用平台\api-backend" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.yupi.project.service" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.yupi.project.service.impl" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.timess.project.model.vo" />
+      <recent name="com.timess.project.model.dto.interfaceinfo" />
+      <recent name="com.timess.apigateway" />
+      <recent name="com.yupi.project.controller" />
+      <recent name="com.yupi.project.common" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MyApplication">
+    <configuration name="UserInterfaceInfoServiceImplTest.invokeCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.timess.project.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.timess.project.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.timess.project.service.impl.UserInterfaceInfoServiceImplTest" />
+      <option name="METHOD_NAME" value="invokeCount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="api-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.timess.project.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserInterfaceInfoServiceImplTest.invokeCount" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="269abc0e-cd83-4572-be26-3d484625fec3" name="Changes" comment="" />
+      <created>1723737246828</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723737246828</updated>
+      <workItem from="1723737252213" duration="158000" />
+      <workItem from="1723780015850" duration="124000" />
+      <workItem from="1723780191700" duration="3443000" />
+      <workItem from="1723783754241" duration="17000" />
+      <workItem from="1723783794289" duration="2688000" />
+      <workItem from="1723881415611" duration="157000" />
+      <workItem from="1723881591113" duration="10000" />
+      <workItem from="1723881651686" duration="1081000" />
+      <workItem from="1724134564645" duration="144000" />
+      <workItem from="1724134726843" duration="136000" />
+      <workItem from="1724134875673" duration="6470000" />
+      <workItem from="1724158022318" duration="4558000" />
+      <workItem from="1724220089170" duration="4546000" />
+      <workItem from="1724294267306" duration="17508000" />
+      <workItem from="1724376340726" duration="4871000" />
+      <workItem from="1724475249810" duration="213000" />
+      <workItem from="1724576869059" duration="3530000" />
+      <workItem from="1724597250337" duration="8036000" />
+      <workItem from="1724651945774" duration="13463000" />
+      <workItem from="1724685731345" duration="3972000" />
+      <workItem from="1724725612238" duration="10890000" />
+      <workItem from="1724757309260" duration="27000" />
+      <workItem from="1724757392498" duration="143000" />
+      <workItem from="1724758089111" duration="363000" />
+      <workItem from="1724758576235" duration="26000" />
+      <workItem from="1724758776114" duration="796000" />
+      <workItem from="1724761356400" duration="28000" />
+      <workItem from="1724761466554" duration="15000" />
+      <workItem from="1724761565604" duration="315000" />
+      <workItem from="1724762059341" duration="2709000" />
+      <workItem from="1724819851989" duration="21000" />
+      <workItem from="1724839941817" duration="2182000" />
+      <workItem from="1724842275857" duration="24000" />
+      <workItem from="1724842322415" duration="5251000" />
+      <workItem from="1724848126079" duration="376000" />
+      <workItem from="1724903801156" duration="3436000" />
+      <workItem from="1724907346936" duration="340000" />
+      <workItem from="1724907712924" duration="2416000" />
+      <workItem from="1724910141491" duration="18654000" />
+      <workItem from="1724988603900" duration="17523000" />
+    </task>
+    <task id="LOCAL-00001" summary="2024-8-22">
+      <option name="closed" value="true" />
+      <created>1724311133477</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724311133477</updated>
+    </task>
+    <task id="LOCAL-00002" summary="2024-8-23-api网关改造前">
+      <option name="closed" value="true" />
+      <created>1724382595001</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724382595001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.dubbo:dubbo" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.cloud:spring-cloud-context" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:javax.validation:validation-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="2024-8-22" />
+    <MESSAGE value="2024-8-23-api网关改造前" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024-8-23-api网关改造前" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/CustomGlobalFilter.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/CustomGlobalFilter.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/CustomGlobalFilter.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/timess/project/service/impl/inner/InnerInterfaceInfoServiceImpl.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/timess/project/controller/InterfaceInfoController.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../API-client-sdk/src/main/java/com/timess/apiclientsdk/client/APIClient.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/timess/project/controller/InterfaceInfoController.java</url>
+          <line>210</line>
+          <properties class="com.timess.project.controller.InterfaceInfoController" method="invokeInterfaceInfo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,5 @@
+com\timess\apiclientsdk\utils\SignUtils.class
+com\timess\apiclientsdk\APIClientConfig.class
+META-INF\spring-configuration-metadata.json
+com\timess\apiclientsdk\client\APIClient.class
+com\timess\apiclientsdk\model\User.class

@@ -1,0 +1,6 @@
+server:
+  port: 12717
+api:
+  client:
+    access-key: "06d959d2c926c992a8786ec0377fab4f"
+    secret-key: abdb2a56a10bf5a666514fdea7070971

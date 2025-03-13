@@ -1,7 +1,6 @@
 package com.timess.apiclientsdk;
 
 import com.timess.apiclientsdk.client.APIClient;
-import com.timess.apiclientsdk.model.User;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

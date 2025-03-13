@@ -28,11 +28,10 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
                 throw new BusinessException(ErrorCode.PARAMS_ERROR,"名称过长");
             }
         }
-
     }
 
     @Override
-    public boolean invokeCount(long interfaceInfoId, long userId) {
+    public void invokeCount(long interfaceInfoId, long userId) {
         if(interfaceInfoId <= 0 || userId <= 0){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -42,7 +41,6 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
         updateWrapper.gt("leftNum",0);
         updateWrapper.setSql("leftNum = leftNum - 1, totalNum = totalNum + 1");
         this.update(updateWrapper);
-        return true;
     }
 }
 

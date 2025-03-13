@@ -5,22 +5,23 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.timess.apicommon.model.entity.InterfaceInfo;
 import com.timess.apicommon.model.entity.User;
 import com.timess.apicommon.model.entity.UserInterfaceInfo;
+import com.timess.apicommon.model.entity.entity.InvokeRecord;
+
+import java.util.List;
 
 /**
 * @author xing10
 */
 public interface InnerUserInterfaceInfoService{
     /**
-     * 调用接口统计
-     * @param interfaceInfoId  接口id
-     * @param userId 用户id
-     * @return
+     * 批调用统计插入接口
+     * @param batch
      */
-    boolean invokeCount(long interfaceInfoId, long userId);
+    void invokeCount(List<InvokeRecord> batch);
 
     /**
      * 获取用户接口的剩余调用次数
      */
-    int leftNumCount(long interfaceInfoId, long userId);
+    int leftNumCount(long userId, long interfaceInfoId);
 
 }

@@ -8,7 +8,6 @@ import com.timess.apicommon.model.entity.UserInterfaceInfo;
  */
 public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
 
-    // [编程导航学习圈](https://t.zsxq.com/0emozsIJh) 连接万名编程爱好者，一起优秀！20000+ 小伙伴交流分享、40+ 大厂嘉宾一对一答疑、4000+ 编程问答参考、100+ 各方向编程交流群
 
     void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add);
 
@@ -18,5 +17,5 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
      * @param userId
      * @return
      */
-    boolean invokeCount(long interfaceInfoId, long userId);
+    void invokeCount(long interfaceInfoId, long userId);
 }

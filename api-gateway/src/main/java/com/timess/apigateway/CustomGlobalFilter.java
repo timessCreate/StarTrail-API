@@ -6,6 +6,7 @@ import com.timess.apicommon.model.entity.User;
 import com.timess.apicommon.service.InnerInterfaceInfoService;
 import com.timess.apicommon.service.InnerUserInterfaceInfoService;
 import com.timess.apicommon.service.InnerUserService;
+import com.timess.manager.AsyncInvokeManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
@@ -24,6 +25,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+
+import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +44,7 @@ import java.util.Objects;
 @Component
 public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
-    private static final List<String> IP_WHITE_LIST = Arrays.asList("127.0.0.1");
+    private static final List<String> IP_BLACK_LIST = Arrays.asList();
 
     private String INTERFACE_HOST = "http://localhost:8123";
     @DubboReference
@@ -48,6 +52,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
     @DubboReference
     private InnerUserService innerUserService;
+
+    @Resource
+    private AsyncInvokeManager asyncInvokeManager;
 
     @DubboReference
     private InnerInterfaceInfoService innerInterfaceInfoService;
@@ -57,26 +64,26 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 //        1. 记录日志
         ServerHttpRequest request = exchange.getRequest();
-        log.info("=========================== ");
-        log.info("请求唯一标识： " + request.getId());
+        log.debug("=========================== ");
+        log.debug("请求唯一标识： " + request.getId());
 
         String path = INTERFACE_HOST + request.getPath().value();
-        log.info("请求路径： " + path);
+        log.debug("请求路径： " + path);
 
         String method = Objects.requireNonNull(request.getMethod()).toString();
-        log.info("请求方法： " + method);
+        log.debug("请求方法： " + method);
 
         String params = request.getQueryParams().toString();
-        log.info("请求参数： " + params);
+        log.debug("请求参数： " + params);
 
         String sourceAddress = request.getLocalAddress().getHostString();
-        log.info("请求本地地址： " + sourceAddress);
-        log.info("请求来源地址： " + request.getRemoteAddress());
-        log.info("=========================== ");
+        log.debug("请求本地地址： " + sourceAddress);
+        log.debug("请求来源地址： " + request.getRemoteAddress());
+        log.debug("=========================== ");
         ServerHttpResponse response = exchange.getResponse();
 
-//        2. 校验该用户是否在黑白名单内
-        if (!IP_WHITE_LIST.contains(sourceAddress)) {
+//        2. 校验该用户是否在黑名单内
+        if (IP_BLACK_LIST.contains(sourceAddress)) {
             return this.handleNoAuth(response);
         }
 //        3. 用户鉴权(判断 ak，sk 是否合法)
@@ -91,11 +98,11 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         User invokeUser = null;
         try {
             invokeUser = innerUserService.getInvokeUser(accessKey);
-        }catch (Exception e){
+        } catch (Exception e) {
             //为查询到该用户，记录日志
-            log.info("get invokeUser error", e);
+            log.debug("get invokeUser error", e);
         }
-        if(invokeUser == null){
+        if (invokeUser == null) {
             //用户信息为null, 处理未授权情况，并返回响应
             return handleNoAuth(response);
         }
@@ -112,42 +119,37 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         if (currentTime - Long.parseLong(timestamp) > FIVE_MINUTES) {
             return this.handleNoAuth(response);
         }
-
         //从数据库中查询secretKey
         //从刚才获取的invokeUser对象中获取该信息
         String secretKey = invokeUser.getSecretKey();
         //使用获取到的密钥对请求体进行签名
-        String serverSign = SignUtils.genSign(body,secretKey);
-        if(sign == null || !sign.equals(serverSign)){
+        String serverSign = SignUtils.genSign(body, secretKey);
+        if (sign == null || !sign.equals(serverSign)) {
             //如果签名为null或者不一致，返回处理未授权的响应
             return handleNoAuth(response);
         }
-
 //       4. 请求的模拟接口是否存在？ 以及请求方法是否匹配
         //初始化一个空的接口对象存储查询到的结果
         InterfaceInfo interfaceInfo = null;
         try {
-            interfaceInfo = innerInterfaceInfoService.getInterfaceInfo(path,method);
+            interfaceInfo = innerInterfaceInfoService.getInterfaceInfo(path, method);
         } catch (Exception e) {
             //接口不存在，记录日志
-            log.info("getInterfaceInfo error", e);
+            log.debug("getInterfaceInfo error", e);
         }
-        if(interfaceInfo == null){
+        if (interfaceInfo == null) {
+            log.debug("接口不存在");
             return handleNoAuth(response);
         }
 
 //        5. 校验请求参数是否合法
         //校验接口接口调用次数是否 > 0
-        int leftNumCount = innerUserInterfaceInfoService.leftNumCount(interfaceInfo.getId(), invokeUser.getId());
-        if(leftNumCount == 0){
+        int leftNumCount = innerUserInterfaceInfoService.leftNumCount(invokeUser.getId(), interfaceInfo.getId());
+        if (leftNumCount == 0) {
             return handleNoAuth(response);
         }
-////        6. 请求转发，调用模拟接口
-//        Mono<Void> filter = chain.filter(exchange);
-
-//        7. 响应日志 + 调用次数 + 1
+//        6. 响应日志 + 调用次数 + 1
         return handleResponse(exchange, chain, interfaceInfo.getId(), invokeUser.getId());
-
     }
 
     /**
@@ -167,51 +169,50 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
             DataBufferFactory bufferFactory = originalResponse.bufferFactory();
             // 拿到响应码
             HttpStatus statusCode = originalResponse.getStatusCode();
-            if (statusCode == HttpStatus.OK) {
-                // 装饰，增强能力
-                ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
-                    // 等调用完转发的接口后才会执行
-                    @Override
-                    public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
-                        log.info("body instanceof Flux: {}", (body instanceof Flux));
-                        if (body instanceof Flux) {
-                            Flux<? extends DataBuffer> fluxBody = Flux.from(body);
-                            // 往返回值里写数据
-                            // 拼接字符串
-                            return super.writeWith(
-                                    fluxBody.map(dataBuffer -> {
-                                        // 7. 调用成功，接口调用次数 + 1 invokeCount
-                                        try {
-                                            innerUserInterfaceInfoService.invokeCount(interfaceInfoId, userId);
-                                        } catch (Exception e) {
-                                            log.error("invokeCount error", e);
-                                        }
-                                        byte[] content = new byte[dataBuffer.readableByteCount()];
-                                        dataBuffer.read(content);
-                                        //释放掉内存
-                                        DataBufferUtils.release(dataBuffer);
-                                        // 构建日志
-                                        StringBuilder sb2 = new StringBuilder(200);
-                                        List<Object> rspArgs = new ArrayList<>();
-                                        rspArgs.add(originalResponse.getStatusCode());
-                                        String data = new String(content, StandardCharsets.UTF_8); //data
-                                        sb2.append(data);
-                                        // 打印日志
-                                        log.info("响应结果：" + data);
-                                        return bufferFactory.wrap(content);
-                                    }));
-                        } else {
-                            // 8. 调用失败，返回一个规范的错误码
-                            log.error("<--- {} 响应code异常", getStatusCode());
-                        }
-                        return super.writeWith(body);
+            // 装饰，增强能力
+            ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
+                // 等调用完转发的接口后才会执行
+                @Override
+                public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
+                    log.debug("body instanceof Flux: {}", (body instanceof Flux));
+                    if (body instanceof Flux) {
+                        Flux<? extends DataBuffer> fluxBody = Flux.from(body);
+                        // 往返回值里写数据
+                        // 拼接字符串
+                        return super.writeWith(
+                                fluxBody.map(dataBuffer -> {
+                                    byte[] content = new byte[dataBuffer.readableByteCount()];
+                                    dataBuffer.read(content);
+                                    //释放掉内存
+                                    DataBufferUtils.release(dataBuffer);
+                                    // 构建日志
+                                    StringBuilder sb2 = new StringBuilder(200);
+                                    List<Object> rspArgs = new ArrayList<>();
+                                    rspArgs.add(originalResponse.getStatusCode());
+                                    String data = new String(content, StandardCharsets.UTF_8); //data
+                                    sb2.append(data);
+                                    // 打印日志
+                                    log.debug("响应结果：" + data);
+                                    // 7. 调用成功，接口调用次数 + 1 invokeCount
+                                    // 异步提交调用记录（非阻塞）
+                                    if (originalResponse.getStatusCode() == HttpStatus.OK) {
+                                        Mono.fromRunnable(() ->
+                                                asyncInvokeManager.addInvokeRecord(interfaceInfoId, userId)
+                                        ).subscribeOn(Schedulers.boundedElastic()).subscribe();
+                                    }
+                                    return bufferFactory.wrap(content);
+                                }));
+                    } else {
+                        // 8. 调用失败，返回一个规范的错误码
+                        log.error("<--- {} 响应code异常", getStatusCode());
                     }
-                };
-                // 设置 response 对象为装饰过的
-                return chain.filter(exchange.mutate().response(decoratedResponse).build());
-            }
+                    return super.writeWith(body);
+                }
+            };
+            // 设置 response 对象为装饰过的
+            return chain.filter(exchange.mutate().response(decoratedResponse).build());
             // 降级处理返回数据
-            return chain.filter(exchange);
+            //return chain.filter(exchange);
         } catch (Exception e) {
             log.error("网关处理响应异常" + e);
             return chain.filter(exchange);

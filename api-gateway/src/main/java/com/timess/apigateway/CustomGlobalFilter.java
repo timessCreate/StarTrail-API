@@ -144,8 +144,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
 //        5. 校验请求参数是否合法
         //校验接口接口调用次数是否 > 0
-        int leftNumCount = innerUserInterfaceInfoService.leftNumCount(invokeUser.getId(), interfaceInfo.getId());
-        if (leftNumCount == 0) {
+        Integer leftNumCount = innerUserInterfaceInfoService.leftNumCount(invokeUser.getId(), interfaceInfo.getId());
+        if (leftNumCount == null || leftNumCount == 0) {
             return handleNoAuth(response);
         }
 //        6. 响应日志 + 调用次数 + 1

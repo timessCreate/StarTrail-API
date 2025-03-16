@@ -22,6 +22,6 @@ public interface InnerUserInterfaceInfoService{
     /**
      * 获取用户接口的剩余调用次数
      */
-    int leftNumCount(long userId, long interfaceInfoId);
+    Integer leftNumCount(long userId, long interfaceInfoId);
 
 }

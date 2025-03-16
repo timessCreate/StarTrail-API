@@ -8,6 +8,17 @@ spring:
     username: root
     password: "099636"
 
+  rabbitmq:
+    virtual-host: /
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 100
+
   mvc:
     path match:
       matching-strategy: ANT_PATH_MATCHER

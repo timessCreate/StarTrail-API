@@ -2,9 +2,9 @@ package com.timess.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.timess.apicommon.model.entity.UserInterfaceInfo;
-import com.timess.project.model.entity.TempInvokeRecord;
+import com.timess.project.model.entity.BatchDeductParam;
+import com.timess.project.rabbitmq.BatchConsumer;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,26 +15,21 @@ import java.util.List;
 * @Entity com.yupi.project.model.entity.UserInterfaceInfo
 */
 public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
-        List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit);
+    /**
+     * 批量扣减接口调用次数（带版本校验）
+     * @param params 扣减参数列表
+     * @return 实际成功更新的记录数
+     */
+    int batchDeductWithVersion(List<BatchDeductParam> params);
 
-
-        //创建临时表
-        void createTempTable();
-
-        //批量插入临时表
-        void batchInsert(@Param("list")List<TempInvokeRecord> records);
-
-        //批量减扣次数
-        int batchDeductByTempTable();
-
-        // 查询剩余次数
-        Integer selectLeftNum(
-                @Param("userId") Long userId,
-                @Param("interfaceId") Long interfaceId
-        );
-
-        @Update("DROP TABLE IF EXISTS temp_invoke_records")
-        void dropTempTableIfExists();
+    /**
+     * 批量查询用户接口信息（根据组合键）
+     * @param keys 组合键列表 (userId + interfaceId)
+     * @return 用户接口信息列表
+     */
+    List<UserInterfaceInfo> batchSelectByCompositeKeys(
+            @Param("keys") List<BatchConsumer.CompositeKey> keys
+    );
 }
 
 

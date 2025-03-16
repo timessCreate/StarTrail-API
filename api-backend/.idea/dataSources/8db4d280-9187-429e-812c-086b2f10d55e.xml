@@ -1073,7 +1073,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="297" parent="1" name="my_db">
-      <LastIntrospectionLocalTimestamp>2025-03-13.13:52:05</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-14.16:06:55</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="298" parent="1" name="test">
@@ -1123,7 +1123,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="308" parent="304" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <Comment>主键</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
@@ -1338,7 +1338,7 @@ method</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="344" parent="306" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <Comment>id</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
@@ -1436,7 +1436,7 @@ method</ColNames>
       <UnderlyingIndexName>uni_userAccount</UnderlyingIndexName>
     </key>
     <column id="361" parent="307" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <Comment>主键</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
@@ -1497,17 +1497,24 @@ method</ColNames>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <index id="370" parent="307" name="PRIMARY">
+    <column id="370" parent="307" name="version">
+      <Comment>版本号</Comment>
+      <DasType>int|0s</DasType>
+      <DefaultExpression>0</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+    </column>
+    <index id="371" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="371" parent="307" name="userId_interfaceId__index">
+    <index id="372" parent="307" name="userId_interfaceId__index">
       <ColNames>userId
 interfaceInfoId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="307" name="PRIMARY">
+    <key id="373" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

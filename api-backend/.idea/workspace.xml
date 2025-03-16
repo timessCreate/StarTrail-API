@@ -8,105 +8,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="269abc0e-cd83-4572-be26-3d484625fec3" name="Changes" comment="2024-8-23-api网关改造前">
-      <change afterPath="$PROJECT_DIR$/../.idea/StarTrail-API.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../APIinterface_simulation/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../APIinterface_simulation/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../APIinterface_simulation/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/src/main/java/com/timess/apiagent/ApiAgentApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-agent/src/test/java/com/timess/apiagent/ApiAgentApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/api-backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-common/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-common/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-common/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-common/src/main/java/com/timess/apicommon/model/entity/entity/InvokeRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/.idea/api-gateway.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/ApiGatewayApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/config/SchedulerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/manager/AsyncInvokeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API-client-sdk/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/model/entity/TempInvokeRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APIinterface_simulation/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APIinterface_simulation/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/src/main/java/org/timessapi/apiinterface_simulation/APIInterfaceSimulationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../APIinterface_simulation/src/main/java/org/timessapi/apiinterface_simulation/APIInterfaceSimulationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/src/test/java/org/timessapi/apiinterface_simulation/ApIInterfaceSimulationApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/target/classes/org/timessapi/apiinterface_simulation/APIInterfaceSimulationApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/target/classes/org/timessapi/apiinterface_simulation/controller/NameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APIinterface_simulation/target/test-classes/org/timessapi/apiinterface_simulation/ApIInterfaceSimulationApplicationTests.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/config/RabbitMqConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/model/entity/BatchDeductParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/rabbitmq/BatchConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/rabbitmq/DlxConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/rabbitmq/RetryConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/utils/CommonUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/config/RabbitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/service/GatewayCheckService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/service/GatewayCheckService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9/storage_v2/_src_/schema/api_interface.VIlhlA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7549c69-22cf-4353-89ef-5421888e6af9/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8db4d280-9187-429e-812c-086b2f10d55e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8db4d280-9187-429e-812c-086b2f10d55e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/ddl.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/ddl.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/controller/AnalysisController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/mapper/UserInterfaceInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/mapper/UserInterfaceInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/service/UserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/service/UserInterfaceInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/service/impl/UserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/service/impl/UserInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/model/entity/TempInvokeRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/provider/DemoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/provider/DemoServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/timess/project/service/impl/inner/InnerUserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/timess/project/service/impl/inner/InnerUserInterfaceInfoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserInterfaceInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInterfaceInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/timess/project/service/UserServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/timess/project/service/impl/UserInterfaceInfoServiceImplTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/MyApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/MyApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/controller/AnalysisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/controller/AnalysisController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/mapper/UserInterfaceInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/mapper/UserInterfaceInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/service/UserInterfaceInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/service/UserInterfaceInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/service/impl/UserInterfaceInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/service/impl/UserInterfaceInfoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/model/entity/TempInvokeRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/provider/DemoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/provider/DemoServiceImpl.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/timess/project/service/impl/inner/InnerUserInterfaceInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/timess/project/service/impl/inner/InnerUserInterfaceInfoServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserInterfaceInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserInterfaceInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/timess/project/service/UserServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/timess/project/service/impl/UserInterfaceInfoServiceImplTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-common/src/main/java/com/timess/apicommon/model/entity/UserInterfaceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/src/main/java/com/timess/apicommon/model/entity/UserInterfaceInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-common/src/main/java/com/timess/apicommon/service/InnerUserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/src/main/java/com/timess/apicommon/service/InnerUserInterfaceInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/api-common-0.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/InterfaceInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/Post.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/UserInterfaceInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/enums/InterfaceInfoStatusEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/enums/PostGenderEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/enums/PostReviewStatusEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/vo/PostVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/vo/UserVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/service/InnerInterfaceInfoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/service/InnerUserInterfaceInfoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/service/InnerUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-common/target/test-classes/com/timess/apicommon/ApiCommonApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-common/target/api-common-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/target/api-common-0.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/UserInterfaceInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/model/entity/UserInterfaceInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/service/InnerUserInterfaceInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../api-common/target/classes/com/timess/apicommon/service/InnerUserInterfaceInfoService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/ApiGatewayApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/ApiGatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/CustomGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/apigateway/CustomGlobalFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/project/provider/DemoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/config/SchedulerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/manager/AsyncInvokeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/timess/manager/AsyncInvokeManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/apigateway/ApiGatewayApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/apigateway/CustomGlobalFilter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/apigateway/CustomGlobalFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/project/provider/DemoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-gateway/target/test-classes/com/timess/apigateway/ApiGatewayApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/ApiGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/ApiGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/apigateway/CustomGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/apigateway/CustomGlobalFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/config/SchedulerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/manager/AsyncInvokeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/target/classes/com/timess/manager/AsyncInvokeManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,49 +107,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "JUnit.UserInterfaceInfoServiceImplTest.invokeCount.executor": "Run",
-    "Maven.API-client-sdk [install].executor": "Run",
-    "Maven.api-common [clean].executor": "Run",
-    "Maven.api-common [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.APIInterfaceSimulationApplication.executor": "Debug",
-    "Spring Boot.ApiGatewayApplication.executor": "Debug",
-    "Spring Boot.GatewayLearningApplication.executor": "Run",
-    "Spring Boot.MyApplication.executor": "Run",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/api-project/api-common",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;JUnit.UserInterfaceInfoServiceImplTest.invokeCount.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.API-client-sdk [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-common [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-common [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.APIInterfaceSimulationApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GatewayLearningApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MyApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/api-project/api-common&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -339,6 +287,10 @@
       <workItem from="1724988603900" duration="17523000" />
       <workItem from="1741844175958" duration="10365000" />
       <workItem from="1741857476050" duration="12674000" />
+      <workItem from="1741931109893" duration="9437000" />
+      <workItem from="1741963642591" duration="12625000" />
+      <workItem from="1742020912474" duration="20224000" />
+      <workItem from="1742115846683" duration="1348000" />
     </task>
     <task id="LOCAL-00001" summary="2024-8-22">
       <option name="closed" value="true" />
@@ -421,6 +373,11 @@
           <url>file://$PROJECT_DIR$/../API-client-sdk/src/main/java/com/timess/apiclientsdk/client/APIClient.java</url>
           <line>53</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/timess/project/utils/CommonUtils.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/timess/project/controller/InterfaceInfoController.java</url>

@@ -14,58 +14,52 @@
             <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,userId,interfaceInfoId,
         totalNum,leftNum,status,
-        createTime,updateTime,isDelete
+        createTime,updateTime,isDelete,version
     </sql>
-    <select id="listTopInvokeInterfaceInfo" resultType="com.timess.apicommon.model.entity.UserInterfaceInfo">
-        select interfaceInfoId, sum(totalNum) as totalNum
-        from user_interface_info group by interfaceInfoId
-        order by totalNum desc
-        limit #{limit};
-    </select>
-
-    <!-- 1. 创建临时表 -->
-    <update id="createTempTable">
-        CREATE TEMPORARY TABLE temp_invoke_records (
-        user_id BIGINT NOT NULL,
-        interface_info_id BIGINT NOT NULL,
-        count INT NOT NULL,
-        PRIMARY KEY (user_id, interface_info_id)
-    )
-    </update>
-
-    <!-- 2. 批量插入临时表 -->
-    <insert id="batchInsert">
-        INSERT INTO temp_invoke_records (user_id, interface_info_id, count)
-        VALUES
-        <foreach collection="list" item="item" separator=",">
-            (#{item.userId}, #{item.interfaceInfoId}, #{item.count})
-        </foreach>
-    </insert>
-
-    <!-- 3. 批量扣减 -->
-    <update id="batchDeductByTempTable">
+    <!-- 修改后的 MySQL 兼容批量更新SQL -->
+    <update id="batchDeductWithVersion">
         UPDATE user_interface_info u
-            JOIN temp_invoke_records t
-        ON u.userId = t.user_id
-            AND u.interfaceInfoId = t.interface_info_id
-            SET
-                u.leftNum = u.leftNum - t.count,
-                u.totalNum = u.totalNum + t.count
+        JOIN (
+        <foreach collection="list" item="item" separator=" UNION ALL ">
+            SELECT
+            #{item.userId} AS userId,
+            #{item.interfaceId} AS interfaceInfoId,
+            #{item.count} AS count,
+            #{item.version} AS expected_version
+        </foreach>
+        ) tmp
+        ON u.userId = tmp.userId
+        AND u.interfaceInfoId = tmp.interfaceInfoId
+        SET
+        u.leftNum = CASE
+        WHEN u.leftNum >= tmp.count THEN u.leftNum - tmp.count
+        ELSE u.leftNum
+        END,
+        u.version = u.version + 1
         WHERE
-            u.leftNum >= t.count
+        u.version = tmp.expected_version
+        AND u.leftNum >= tmp.count
     </update>
 
-    <!-- 4. 查询剩余次数 -->
-    <select id="selectLeftNum" resultType="java.lang.Integer">
-        SELECT left_num
+    <!-- 批量查询用户接口信息（根据组合键 userId + interfaceId） -->
+    <select id="batchSelectByCompositeKeys" resultType="com.timess.apicommon.model.entity.UserInterfaceInfo">
+        SELECT
+        userId,
+        interfaceInfoId,
+        <!-- 字段别名映射到 currentLeft -->
+        leftNum,
+        version
         FROM user_interface_info
-        WHERE
-            user_id = #{userId}
-          AND interface_info_id = #{interfaceId}
+        WHERE (userId, interfaceInfoId) IN
+        <foreach collection="keys" item="key" open="(" separator="),(" close=")">
+            (#{key.userId}, #{key.interfaceInfoId})
+        </foreach>
     </select>
+
 </mapper>

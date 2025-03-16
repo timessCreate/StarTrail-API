@@ -14,7 +14,22 @@ spring:
 #排除自动连接数据库的依赖
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    publisher-returns: true
+    publisher-confirm-type: correlated
 
+rabbitconfig:
+  queue:
+    name: "invoke.main.queue"
+  exchange:
+    name: "invoke.main.exchange"
+  routingkey:
+    name: "invoke.main.routingKey"
 
 logging:
   level:

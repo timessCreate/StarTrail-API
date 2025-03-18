@@ -55,9 +55,7 @@ public class APIClient {
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
-        System.out.println("getUserNameByPost的响应码为：" + httpResponse.getStatus());
         String result = httpResponse.body();
-        System.out.println(result);
         return result;
     }
 }

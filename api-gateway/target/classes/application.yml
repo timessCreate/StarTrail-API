@@ -22,6 +22,12 @@ spring:
     virtual-host: /
     publisher-returns: true
     publisher-confirm-type: correlated
+  redis:
+    port: 32700
+    host: localhost
+    password: L#o1DZL-%!mCR8r=aM:w
+    database: 0
+
 
 rabbitconfig:
   queue:
@@ -37,7 +43,6 @@ logging:
       springframework:
         cloud:
           gateway: warn
-
 dubbo:
   application:
     name: dubbo-springboot-demo-provider

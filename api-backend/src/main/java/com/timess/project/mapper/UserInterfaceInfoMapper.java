@@ -20,7 +20,7 @@ public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
      * @param params 扣减参数列表
      * @return 实际成功更新的记录数
      */
-    int batchDeductWithVersion(List<BatchDeductParam> params);
+    int batchDeductWithVersion(@Param("list") List<BatchDeductParam> params);
 
     /**
      * 批量查询用户接口信息（根据组合键）

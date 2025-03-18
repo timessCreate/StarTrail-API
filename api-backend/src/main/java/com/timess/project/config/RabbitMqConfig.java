@@ -1,6 +1,9 @@
 package com.timess.project.config;
 
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -98,4 +101,21 @@ public class RabbitMqConfig {
                 .to(dlxExchange())
                 .with(DLX_QUEUE);
     }
+
+    @Bean(name = "batchContainerFactory")
+    public SimpleRabbitListenerContainerFactory batchContainerFactory(
+            ConnectionFactory connectionFactory) {
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setBatchListener(true);
+        factory.setConcurrentConsumers(1);
+        factory.setMaxConcurrentConsumers(1);
+        factory.setConsumerBatchEnabled(true);
+        factory.setBatchSize(100);
+        factory.setPrefetchCount(100);
+        // 配置JSON消息转换器（反序列化消息体）
+        factory.setMessageConverter(new Jackson2JsonMessageConverter());
+        return factory;
+    }
+
 }

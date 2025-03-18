@@ -32,6 +32,7 @@
             #{item.interfaceId} AS interfaceInfoId,
             #{item.count} AS count,
             #{item.version} AS expected_version
+            FROM DUAL
         </foreach>
         ) tmp
         ON u.userId = tmp.userId

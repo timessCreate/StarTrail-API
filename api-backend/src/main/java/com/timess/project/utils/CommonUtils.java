@@ -10,8 +10,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
+
 
 /**
  * @author 33363
@@ -23,6 +28,7 @@ public class CommonUtils {
     @Resource
     private  RedisTemplate<String, String> redisTemplate;
 
+    private static final String FAILURE_LOG_PATH = "failure_logs.txt";
     // Key构建方法
     private static String buildLeftKey(Long userId, Long interfaceId) {
         return String.format("count:left:%d:%d", userId, interfaceId);
@@ -56,22 +62,6 @@ public class CommonUtils {
             }
         });
     }
-    // 确认消费的原子脚本
-//    private static final String CONFIRM_SCRIPT =
-//            "local preKey = KEYS[1] " +
-//                    "local consumed = tonumber(ARGV[1]) " +
-//
-//
-//                    "local current = redis.call('decrby', preKey, consumed) " +
-//
-//
-//                    "if current < 0 then " +
-//                    "   redis.call('set', preKey, 0) " +
-//                    "   return {-1} " +
-//                    "end " +
-//                    "return {1}";
-//
-
     private static final String CONFIRM_SCRIPT =
             "local preKey = KEYS[1] " +
                     "local consumed = tonumber(ARGV[1]) " +
@@ -83,9 +73,9 @@ public class CommonUtils {
                     // 防止预锁量变为负数
                     "if current < 0 then " +
                     "   redis.call('set', preKey, 0) " +
-                    "   return -1 " +
+                    "   return {-1} " +
                     "end " +
-                    "return 1";
+                    "return {1}";
 
     // 预锁键模式
     private static final String PRE_KEY_PATTERN = "count:pre:*";
@@ -124,7 +114,6 @@ public class CommonUtils {
                     redisTemplate.expire(convertToLeftKey(preKey), 48, TimeUnit.HOURS);
                     continue;
                 }
-
                 // 分批处理避免内存溢出
                 if (keysToDelete.size() >= 500) {
                     executeBatchDelete(keysToDelete);
@@ -157,4 +146,11 @@ public class CommonUtils {
         return LEFT_KEY_PREFIX + parts[2] + ":" + parts[3];
     }
 
+    public static synchronized void writeToFile(String content) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAILURE_LOG_PATH, true))) {
+            writer.write(content);
+        } catch (IOException e) {
+            log.error("失败日志写入异常: {}", e.getMessage());
+        }
+    }
 }

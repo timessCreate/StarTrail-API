@@ -5,10 +5,18 @@ import com.timess.apicommon.model.entity.UserInterfaceInfo;
 import com.timess.apicommon.model.entity.entity.InvokeRecord;
 import com.timess.project.mapper.UserInterfaceInfoMapper;
 import com.timess.project.model.entity.BatchDeductParam;
+import com.timess.project.utils.CommonUtils;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,11 +33,15 @@ import static com.timess.project.utils.CommonUtils.cleanupRedisPreDeduct;
 @Service
 public class BatchConsumer {
 
+
     @Resource
     private UserInterfaceInfoMapper userInterfaceInfoMapper;
 
     @Resource
-    private RedisTemplate<String, String> redisTemplate;
+    private SqlSessionTemplate sqlSessionTemplate;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -37,8 +49,7 @@ public class BatchConsumer {
     /**
      * 批量处理扣减请求（带乐观锁）
      */
-    @RabbitListener(queues = "invoke.main.queue", concurrency = "5")
-    @Transactional(rollbackFor = Exception.class)
+    @RabbitListener(queues = "invoke.main.queue", containerFactory = "batchContainerFactory")
     public void handleBatch(List<InvokeRecord> batch, Channel channel) {
         // 1. 合并相同(userId, interfaceId)的扣减次数
         Map<CompositeKey, Integer> countMap = batch.stream()
@@ -46,7 +57,14 @@ public class BatchConsumer {
                         r -> new CompositeKey(r.getUserId(), r.getInterfaceInfoId()),
                         Collectors.summingInt(r -> 1)
                 ));
-
+        System.out.println("---------------------------------------");
+        System.out.println("获取的消息长度：" + batch.size());
+        System.out.println("---------------------------------------");
+        countMap.forEach((key, count) ->
+                System.out.printf("userId=%d, interfaceId=%d => 总调用次数=%d%n",
+                        key.getUserId(), key.getInterfaceInfoId(), count)
+        );
+        System.out.println("---------------------------------------");
         // 2. 批量查询当前版本号和剩余次数
         List<CompositeKey> keys = new ArrayList<>(countMap.keySet());
         List<UserInterfaceInfo> currentInfos = userInterfaceInfoMapper.batchSelectByCompositeKeys(keys);
@@ -76,9 +94,20 @@ public class BatchConsumer {
                 .filter(Objects::nonNull)
                 .filter(p -> p.getCurrentLeft() >= p.getCount())
                 .collect(Collectors.toList());
-
-        // 4. 执行批量更新
-        userInterfaceInfoMapper.batchDeductWithVersion(params);
+        if(params.isEmpty()){
+            return;
+        }
+        //切换为批处理模式
+        SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory()
+                .openSession(ExecutorType.BATCH);
+        try {
+            // 4. 执行批量更新
+            UserInterfaceInfoMapper mapper = sqlSession.getMapper(UserInterfaceInfoMapper.class);
+            mapper.batchDeductWithVersion(params);
+            sqlSession.commit();
+        }finally {
+            sqlSession.close();
+        }
 
         // 5. 精确识别失败记录
         List<BatchDeductParam> failedParams = new ArrayList<>();
@@ -91,7 +120,6 @@ public class BatchConsumer {
                         info -> new CompositeKey(info.getUserId(), info.getInterfaceInfoId()),
                         info -> info
                 ));
-
         params.forEach(param -> {
             UserInterfaceInfo latestInfo = latestInfoMap.get(new CompositeKey(param.getUserId(), param.getInterfaceId()));
             if (latestInfo == null) {
@@ -106,7 +134,6 @@ public class BatchConsumer {
                 successParams.add(param);
             }
         });
-
         // 6. 处理失败记录
         if (!failedParams.isEmpty()) {
             handlePartialFailure(failedParams);
@@ -115,7 +142,6 @@ public class BatchConsumer {
         // 7. 清理Redis预扣减（仅处理成功记录）
         cleanupRedisPreDeduct(successParams, redisTemplate);
     }
-
     /**
      * 处理部分失败记录（发送到重试队列）
      */
@@ -140,8 +166,6 @@ public class BatchConsumer {
         });
     }
 
-
-
     /**
      * 计算重试延迟时间（指数退避）
      */
@@ -152,10 +176,10 @@ public class BatchConsumer {
         // 最大60秒
         return (int) Math.min(5000 * Math.pow(2, retryCount), 60000);
     }
-
     /**
      * 组合键类（确保实现equals和hashCode）
      */
+    @Data
     public static class CompositeKey {
         private final Long userId;
         private final Long interfaceInfoId;
@@ -183,4 +207,6 @@ public class BatchConsumer {
             return Objects.hash(userId, interfaceInfoId);
         }
     }
+
+
 }

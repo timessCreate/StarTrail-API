@@ -7,6 +7,7 @@ import com.timess.apicommon.service.InnerInterfaceInfoService;
 import com.timess.apicommon.service.InnerUserInterfaceInfoService;
 import com.timess.apicommon.service.InnerUserService;
 import com.timess.manager.AsyncInvokeManager;
+import com.timess.service.GatewayCheckService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
@@ -29,10 +30,8 @@ import reactor.core.scheduler.Schedulers;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -59,6 +58,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     @DubboReference
     private InnerInterfaceInfoService innerInterfaceInfoService;
 
+    @Resource
+    GatewayCheckService gatewayCheckService;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -144,9 +145,14 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
 //        5. 校验请求参数是否合法
         //校验接口接口调用次数是否 > 0
-        Integer leftNumCount = innerUserInterfaceInfoService.leftNumCount(invokeUser.getId(), interfaceInfo.getId());
-        if (leftNumCount == null || leftNumCount == 0) {
-            return handleNoAuth(response);
+//        Integer leftNumCount = innerUserInterfaceInfoService.leftNumCount(invokeUser.getId(), interfaceInfo.getId());
+//        if (leftNumCount == null || leftNumCount == 0) {
+//            return handleNoAuth(response);
+//        }
+        //执行预减扣操作
+        boolean b = gatewayCheckService.preDeduct(invokeUser.getId(), interfaceInfo.getId());
+        if(!b){
+            return handleInvokeError(response);
         }
 //        6. 响应日志 + 调用次数 + 1
         return handleResponse(exchange, chain, interfaceInfo.getId(), invokeUser.getId());
@@ -163,6 +169,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
      */
 
     public Mono<Void> handleResponse(ServerWebExchange exchange, GatewayFilterChain chain, long interfaceInfoId, long userId) {
+        String uuid = UUID.randomUUID().toString();
         try {
             ServerHttpResponse originalResponse = exchange.getResponse();
             // 缓存数据的工厂
@@ -196,8 +203,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
                                     // 7. 调用成功，接口调用次数 + 1 invokeCount
                                     // 异步提交调用记录（非阻塞）
                                     if (originalResponse.getStatusCode() == HttpStatus.OK) {
-                                        Mono.fromRunnable(() ->
-                                                asyncInvokeManager.addInvokeRecord(interfaceInfoId, userId)
+                                        Mono.fromRunnable(() ->{
+                                            asyncInvokeManager.addInvokeRecord(uuid,interfaceInfoId, userId);
+                                        }
                                         ).subscribeOn(Schedulers.boundedElastic()).subscribe();
                                     }
                                     return bufferFactory.wrap(content);
